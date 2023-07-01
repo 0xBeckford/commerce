@@ -18,6 +18,12 @@ const testProduct = {
     description: 'Test Description'
   },
   description: 'This is a test product',
+  featuredImage: {
+    url: 'https://images.unsplash.com/photo-1681412332858-ec477cb1bb1f?w=500',
+    width: 500,
+    height: 500,
+    altText: 'Test Product'
+  },
   images: [
     {
       url: 'https://images.unsplash.com/photo-1681412332858-ec477cb1bb1f?w=500',
@@ -86,15 +92,15 @@ export async function generateMetadata({
     },
     openGraph: url
       ? {
-          images: [
-            {
-              url,
-              width,
-              height,
-              alt
-            }
-          ]
-        }
+        images: [
+          {
+            url,
+            width,
+            height,
+            alt
+          }
+        ]
+      }
       : null
   };
 }
