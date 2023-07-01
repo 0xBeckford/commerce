@@ -144,8 +144,7 @@ export default function CartModal({ cart, cartIdUpdated }: { cart: Cart; cartIdU
                             </div>
                             <Price
                               className="flex flex-col justify-between space-y-2 text-sm"
-                              amount={item.cost.totalAmount.amount}
-                              currencyCode={item.cost.totalAmount.currencyCode}
+                              badgeText={item.cost.totalAmount.amount}
                             />
                           </Link>
                           <div className="flex h-9 flex-row">
@@ -165,16 +164,14 @@ export default function CartModal({ cart, cartIdUpdated }: { cart: Cart; cartIdU
                       <p>Subtotal</p>
                       <Price
                         className="text-right"
-                        amount={cart.cost.subtotalAmount.amount}
-                        currencyCode={cart.cost.subtotalAmount.currencyCode}
+                        badgeText={cart.cost.subtotalAmount.amount}
                       />
                     </div>
                     <div className="mb-2 flex items-center justify-between">
                       <p>Taxes</p>
                       <Price
                         className="text-right"
-                        amount={cart.cost.totalTaxAmount.amount}
-                        currencyCode={cart.cost.totalTaxAmount.currencyCode}
+                        badgeText={cart.cost.totalTaxAmount.amount}
                       />
                     </div>
                     <div className="mb-2 flex items-center justify-between border-b border-gray-200 pb-2">
@@ -185,8 +182,7 @@ export default function CartModal({ cart, cartIdUpdated }: { cart: Cart; cartIdU
                       <p>Total</p>
                       <Price
                         className="text-right"
-                        amount={cart.cost.totalAmount.amount}
-                        currencyCode={cart.cost.totalAmount.currencyCode}
+                        badgeText={cart.cost.totalAmount.amount}
                       />
                     </div>
                   </div>

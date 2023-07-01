@@ -24,8 +24,7 @@ function ThreeItemGridItem({
           alt={item.title}
           labels={{
             title: item.title as string,
-            amount: item.priceRange.maxVariantPrice.amount,
-            currencyCode: item.priceRange.maxVariantPrice.currencyCode
+            badgeText: item.badgeText as string,
           }}
         />
       </Link>
@@ -39,12 +38,7 @@ export async function ThreeItemGrid() {
   const item = {
     handle: 'hidden-homepage-featured-items',
     title: 'Hidden Homepage Featured Items',
-    priceRange: {
-      maxVariantPrice: {
-        amount: 1000,
-        currencyCode: 'USD'
-      }
-    },
+    badgeText: 'anything',
     featuredImage: {
       url: 'https://images.unsplash.com/photo-1681412332858-ec477cb1bb1f?w=987'
     }
