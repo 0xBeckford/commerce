@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
@@ -7,7 +6,7 @@ import { Gallery } from 'components/product/gallery';
 import Prose from 'components/prose';
 import { Image } from 'lib/shopify/types';
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 const testProduct = {
   title: 'Test Product',
@@ -67,47 +66,47 @@ const testProduct = {
 </div>`
 };
 
-export async function generateMetadata({
-  params
-}: {
-  params: { handle: string };
-}): Promise<Metadata> {
-  const product = testProduct;
+// export async function generateMetadata({
+//   params
+// }: {
+//   params: { handle: string };
+// }): Promise<Metadata> {
+//   const product = testProduct;
 
-  if (!product) return notFound();
+//   if (!product) return notFound();
 
-  const { url, width, height, altText: alt } = product.featuredImage || {};
-  const hide = false;
+//   const { url, width, height, altText: alt } = product.featuredImage || {};
+//   const hide = false;
 
-  return {
-    title: product.seo.title || product.title,
-    description: product.seo.description || product.description,
-    robots: {
-      index: hide,
-      follow: hide,
-      googleBot: {
-        index: hide,
-        follow: hide
-      }
-    },
-    openGraph: url
-      ? {
-        images: [
-          {
-            url,
-            width,
-            height,
-            alt
-          }
-        ]
-      }
-      : null
-  };
-}
+//   return {
+//     title: product.seo.title || product.title,
+//     description: product.seo.description || product.description,
+//     robots: {
+//       index: hide,
+//       follow: hide,
+//       googleBot: {
+//         index: hide,
+//         follow: hide
+//       }
+//     },
+//     openGraph: url
+//       ? {
+//         images: [
+//           {
+//             url,
+//             width,
+//             height,
+//             alt
+//           }
+//         ]
+//       }
+//       : null
+//   };
+// }
 
 export default async function ProductPage({ params }: { params: { handle: string } }) {
   const product = testProduct;
-
+  console.log(params.handle);
   if (!product) return notFound();
 
   return (
