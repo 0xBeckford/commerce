@@ -1,4 +1,6 @@
 import { GridTileImage } from 'components/grid/tile';
+import { threeFeaturedSpotlightHandles } from 'data/config';
+import { fetchSpotlight } from 'lib/fetch-spotlight';
 import Link from 'next/link';
 
 function ThreeItemGridItem({
@@ -16,7 +18,7 @@ function ThreeItemGridItem({
     >
       <Link className="block h-full" href={`/spotlight/${item.handle}`}>
         <GridTileImage
-          src={item.featuredImage.url}
+          src={item.featuredImage ? item.featuredImage.url : item.images[0].url}
           width={size === 'full' ? 1080 : 540}
           height={size === 'full' ? 1080 : 540}
           priority={true}
@@ -35,20 +37,14 @@ function ThreeItemGridItem({
 export async function ThreeItemGrid() {
   // Collections that start with `hidden-*` are hidden from the search page.
 
-  const item = {
-    handle: 'hidden-homepage-featured-items',
-    title: 'Hidden Homepage Featured Items',
-    badgeText: 'anything',
-    featuredImage: {
-      url: 'https://images.unsplash.com/photo-1681412332858-ec477cb1bb1f?w=987'
-    }
-  };
-
+  const items = await Promise.all(threeFeaturedSpotlightHandles.map(async (handle) =>
+    await fetchSpotlight(handle)
+  ));
   return (
     <section className="lg:grid lg:grid-cols-6 lg:grid-rows-2" data-testid="homepage-products">
-      <ThreeItemGridItem size="full" item={item} background="purple" />
-      <ThreeItemGridItem size="half" item={item} background="black" />
-      <ThreeItemGridItem size="half" item={item} background="pink" />
+      <ThreeItemGridItem size="full" item={items[0]} background="purple" />
+      <ThreeItemGridItem size="half" item={items[1]} background="black" />
+      <ThreeItemGridItem size="half" item={items[2]} background="pink" />
     </section>
   );
 }
