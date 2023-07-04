@@ -6,6 +6,9 @@ import { Gallery } from 'components/product/gallery';
 import Prose from 'components/prose';
 import { Image } from 'lib/shopify/types';
 
+import { readFileSync, readdirSync } from 'fs';
+import path from 'path';
+
 // export const runtime = 'edge';
 
 const testProduct = {
@@ -104,19 +107,50 @@ const testProduct = {
 //   };
 // }
 
+const fetchSpolight = async (fileName: string): Promise<{
+  title: string,
+  description: string,
+  badgeText: string,
+  handle: string,
+  descriptionHtml: string,
+  featuredImage: Image,
+  images: Array<Image>
+}> => {
+  return new Promise((resolve) => {
+    try {
+      const json = readFileSync(path.join(process.cwd(), `./data/spotlights/${fileName}.json`)).toString();
+      const data = JSON.parse(json);
+      const html = readFileSync(path.join(process.cwd(), `./data/spotlights/${fileName}.html`)).toString();
+      const files = readdirSync(path.join(process.cwd(), `./public/images/spotlights/${fileName}`));
+      const images = files.map((file) => {
+        return {
+          url: `/images/spotlights/${fileName}/${file}`,
+          width: 500,
+          height: 500,
+          altText: 'Test Product'
+        };
+      });
+      resolve({ ...data, images, descriptionHtml: html });
+    } catch {
+      resolve(testProduct);
+    }
+  });
+
+}
+
 export default async function ProductPage({ params }: { params: { handle: string } }) {
-  const product = testProduct;
-  console.log(params.handle);
-  if (!product) return notFound();
+  console.log('$$', params.handle);
+  const spotlight = await fetchSpolight(params.handle);
+  if (!spotlight) return notFound();
 
   return (
     <div>
       <div className="lg:grid lg:grid-cols-6">
         <div className="lg:col-span-4">
           <Gallery
-            title={product.title}
-            badgeText={product.badgeText}
-            images={product.images.map((image: Image) => ({
+            title={spotlight.title}
+            badgeText={spotlight.badgeText}
+            images={spotlight.images.map((image: Image) => ({
               src: image.url,
               altText: image.altText
             }))}
@@ -124,8 +158,8 @@ export default async function ProductPage({ params }: { params: { handle: string
         </div>
 
         <div className="p-6 lg:col-span-2">
-          {product.descriptionHtml ? (
-            <Prose className="mb-6 text-sm leading-tight" html={product.descriptionHtml} />
+          {spotlight.descriptionHtml ? (
+            <Prose className="mb-6 text-sm leading-tight" html={spotlight.descriptionHtml} />
           ) : null}
         </div>
       </div>

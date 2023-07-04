@@ -14,7 +14,7 @@ function ThreeItemGridItem({
     <div
       className={size === 'full' ? 'lg:col-span-4 lg:row-span-2' : 'lg:col-span-2 lg:row-span-1'}
     >
-      <Link className="block h-full" href={`/product/${item.handle}`}>
+      <Link className="block h-full" href={`/spotlight/${item.handle}`}>
         <GridTileImage
           src={item.featuredImage.url}
           width={size === 'full' ? 1080 : 540}
