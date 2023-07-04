@@ -5,7 +5,7 @@ const Price = ({
   badgeText: string;
 } & React.ComponentProps<'p'>) => (
   <p suppressHydrationWarning={true} {...props}>
-    badgeText
+    {badgeText}
   </p>
 );
 
