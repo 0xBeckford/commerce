@@ -1,6 +1,5 @@
 import Link from 'next/link';
 
-import CartIcon from 'components/icons/cart';
 import LogoIcon from 'components/icons/logo';
 import { getMenu } from 'lib/shopify';
 import { Menu } from 'lib/shopify/types';
@@ -40,9 +39,7 @@ export default async function Navbar() {
         <Search />
       </div>
 
-      <div className="flex w-1/3 justify-end">
-        <CartIcon className="h-6" />
-      </div>
+      <div className="flex w-1/3 justify-end" />
     </nav>
   );
 }
