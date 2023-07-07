@@ -316,7 +316,7 @@ export async function getCollections(): Promise<Collection[]> {
 export function getMenu(): Menu[] {
   const menu = [
     { title: 'home', path: '/' },
-    { title: 'discover', path: '/discover' }
+    // { title: 'discover', path: '/discover' }
   ];
 
   return menu;
