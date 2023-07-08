@@ -1,1 +1,1 @@
-export const threeFeaturedSpotlightHandles = ['the-code', 'oliver-cheshire', 'henley-beckford', 'paige-lilley'];
+export const threeFeaturedSpotlightHandles = ['oliver-cheshire', 'henley-beckford', 'paige-lilley'];
