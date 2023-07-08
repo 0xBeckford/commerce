@@ -3,7 +3,7 @@ import { ThreeItemGrid } from 'components/grid/three-items';
 // export const runtime = 'edge';
 
 export const metadata = {
-  description: 'High-performance ecommerce store built with Next.js, Vercel, and Shopify.',
+  description: 'Myra Culture Spot, the home for emerging talent.',
   openGraph: {
     images: [
       {
