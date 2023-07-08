@@ -39,7 +39,7 @@ export function Gallery({
             height={600}
             isInteractive={false}
             priority={true}
-            background="gray"
+            background="black"
             labels={{
               title,
               badgeText
@@ -83,7 +83,7 @@ export function Gallery({
                   src={image.src}
                   width={600}
                   height={600}
-                  background="gray"
+                  background="black"
                   active={isActive}
                 />
               </button>
