@@ -16,7 +16,7 @@ export default function ProductGridItems({ products }: { products: Spotlight[] }
                 title: product.title,
                 badgeText: product.badgeText,
               }}
-              src={product.featuredImage?.url || product.images[0]?.url}
+              src={(product.featuredImage?.url || product.images[0]?.url) as string}
               width={600}
               height={600}
             />
