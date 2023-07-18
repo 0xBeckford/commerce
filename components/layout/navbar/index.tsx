@@ -1,10 +1,8 @@
 import Link from 'next/link';
 
 import LogoIcon from 'components/icons/logo';
-import { getMenu } from 'lib/shopify';
-import { Menu } from 'lib/shopify/types';
+import { Menu, getMenu } from 'data/config';
 import MobileMenu from './mobile-menu';
-import Search from './search';
 
 export default async function Navbar() {
   const menu = getMenu();

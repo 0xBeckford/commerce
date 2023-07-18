@@ -22,7 +22,6 @@ import {
   Cart,
   Collection,
   Connection,
-  Menu,
   Page,
   Product,
   ShopifyAddToCartOperation,
@@ -311,15 +310,6 @@ export async function getCollections(): Promise<Collection[]> {
   ];
 
   return collections;
-}
-
-export function getMenu(): Menu[] {
-  const menu = [
-    { title: 'home', path: '/' },
-    { title: 'discover', path: '/discover' }
-  ];
-
-  return menu;
 }
 
 export async function getPage(handle: string): Promise<Page> {
