@@ -99,7 +99,7 @@ export const fetchSpotlight = async (fileName: string): Promise<Spotlight> => {
 export const fetchAllSpotlights = async (): Promise<Array<Spotlight>> => {
   return new Promise(async (resolve) => {
     try {
-      const names = readdirSync(path.join(process.cwd(), `./public/images/spotlights`));
+      const names = readdirSync(path.join(process.cwd(), `./public/images/spotlights`)).sort();
       const promises = names.map((name) => fetchSpotlight(name));
       const results = await Promise.all(promises);
       resolve(results);
