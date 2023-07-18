@@ -3,12 +3,10 @@ import { Suspense } from 'react';
 
 import Footer from 'components/layout/footer';
 import { Gallery } from 'components/product/gallery';
-import Prose from 'components/prose';
 import { Image } from 'lib/shopify/types';
 
+import ReadMore from 'components/read-more';
 import { fetchSpotlight } from '../../../lib/fetch-spotlight';
-
-// export const runtime = 'edge';
 
 export default async function ProductPage({ params }: { params: { handle: string } }) {
   const spotlight = await fetchSpotlight(params.handle);
@@ -29,9 +27,16 @@ export default async function ProductPage({ params }: { params: { handle: string
         </div>
 
         <div className="p-6 lg:col-span-2">
-          {spotlight.descriptionHtml ? (
-            <Prose className="mb-6 text-sm leading-tight" html={spotlight.descriptionHtml} />
-          ) : null}
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            {spotlight.title}
+          </h1>
+          <p className="mt-2 text-gray-500 dark:text-gray-400">
+            {spotlight.badgeText}
+          </p>
+          <p className="mt-2 text-gray-500 dark:text-gray-400">
+            {spotlight.description}
+          </p>
+          <ReadMore title={spotlight.title} innerHtml={spotlight.descriptionHtml} />
         </div>
       </div>
       <Suspense>
