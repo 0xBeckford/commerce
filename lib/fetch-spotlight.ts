@@ -60,9 +60,7 @@ const testProduct = {
 </div>`
 };
 
-export const fetchSpotlight = async (
-  fileName: string
-): Promise<{
+export type Spotlight = {
   title: string;
   description: string;
   badgeText: string;
@@ -70,7 +68,9 @@ export const fetchSpotlight = async (
   descriptionHtml: string;
   featuredImage: Image;
   images: Array<Image>;
-}> => {
+};
+
+export const fetchSpotlight = async (fileName: string): Promise<Spotlight> => {
   return new Promise((resolve) => {
     try {
       const json = readFileSync(
@@ -92,6 +92,19 @@ export const fetchSpotlight = async (
       resolve({ ...data, images, descriptionHtml: html });
     } catch {
       resolve(testProduct);
+    }
+  });
+};
+
+export const fetchAllSpotlights = async (): Promise<Array<Spotlight>> => {
+  return new Promise(async (resolve) => {
+    try {
+      const names = readdirSync(path.join(process.cwd(), `./public/images/spotlights`));
+      const promises = names.map((name) => fetchSpotlight(name));
+      const results = await Promise.all(promises);
+      resolve(results);
+    } catch {
+      resolve([testProduct]);
     }
   });
 };

@@ -1,22 +1,22 @@
 import Grid from 'components/grid';
 import { GridTileImage } from 'components/grid/tile';
-import { Product } from 'lib/shopify/types';
+import { Spotlight } from 'lib/fetch-spotlight';
 import Link from 'next/link';
 
-export default function ProductGridItems({ products }: { products: Product[] }) {
+export default function ProductGridItems({ products }: { products: Spotlight[] }) {
   return (
     <>
       {products.map((product) => (
         <Grid.Item key={product.handle} className="animate-fadeIn">
-          <Link className="h-full w-full" href={`/product/${product.handle}`}>
+          <Link className="h-full w-full" href={`/discover/${product.handle}`}>
             <GridTileImage
               alt={product.title}
               labels={{
                 isSmall: true,
                 title: product.title,
-                badgeText: product.priceRange.maxVariantPrice.amount,
+                badgeText: product.badgeText,
               }}
-              src={product.featuredImage?.url}
+              src={product.featuredImage?.url || product.images[0]?.url}
               width={600}
               height={600}
             />

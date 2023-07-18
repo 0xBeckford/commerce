@@ -21,6 +21,11 @@
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@vercel/og": "^0.5.6",
